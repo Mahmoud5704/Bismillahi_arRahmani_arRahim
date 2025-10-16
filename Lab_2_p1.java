@@ -31,5 +31,5 @@ public class Lab_2_p1 {
         } catch (MatchException | NumberFormatException e  ) {
             System.out.println("invalid inputs(check that all are +ev integer number only)");
         }
-    }
+    }//kjh
 }
