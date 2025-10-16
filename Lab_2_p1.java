@@ -17,7 +17,7 @@ public class Lab_2_p1 {
             int b = Integer.parseInt(parts[1].trim());
             int c = Integer.parseInt(parts[2].trim());
             if (a > 0 && b > 0 && c > 0) {
-                if (a == b && b == c) {//jnkbmhjgcdrfjhvm
+                if (a == b && b == c) {
                     System.out.println("all equal");
                 } else if (a == b || b == c || a == c) {
                     System.out.println("neither");
