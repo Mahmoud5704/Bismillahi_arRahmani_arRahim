@@ -22,12 +22,9 @@ public class AdminRole
     //1-adds a new employee to the file named Employees.txt
     public void addEmployee(String employeeId, String name, String email, String address, String phoneNumber)
     {
-        
         EmployeeUser user = new EmployeeUser (employeeId,name,email,address,phoneNumber);
         database.insertRecord(user);
-         
-
-        
+        database.saveToFile();   
     }
     //2-returns an array that contains all the employees stored in the file named Employees.txt
     public EmployeeUser[] getListOfEmployees()
@@ -35,26 +32,24 @@ public class AdminRole
         
         
         List<EmployeeUser> employees  = database.returnAllRecords();
-        if(employees == null)
+        if(employees == null|| employees.isEmpty())
         {
             System.out.printf("\nthere is NO Employees in the file\n");
-            return null;
+            return new EmployeeUser [0];
         }
         return employees.toArray(new EmployeeUser[0]);
     }
     //3-: removes the employee whose employee id equals the parameter key from the file named Employees.txt
     public void removeEmployee(String key)
     {
-        
-        
         database.deleteRecord(key);
         database.saveToFile();
     }
     //4-writes all unsaved data to the file named Employees.txt
     @Override
     public void logout()
-    {
-        
+    { 
         database.saveToFile();
     }
 }
+
