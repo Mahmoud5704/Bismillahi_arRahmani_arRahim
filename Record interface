@@ -1,0 +1,6 @@
+package lab4part1;
+
+public interface Record {
+    public String lineRepresentation();
+    public String getSearchKey();
+}
