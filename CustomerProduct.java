@@ -1,9 +1,8 @@
-package tasks.absract_database;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class CustomerProduct implements Record {
+public class CustomerProduct implements interface_Record {
 
     private String customerSSN;
     private String productID;
@@ -42,6 +41,6 @@ public class CustomerProduct implements Record {
     }
 
     public String getSearchKey() {
-        return customerSSN + "," + productID+","+purchaseDate.format(formatter);
+        return customerSSN + "," + productID + "," + purchaseDate.format(formatter);
     }
 }

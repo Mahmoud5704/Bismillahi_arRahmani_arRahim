@@ -1,5 +1,3 @@
-package tasks.absract_database;
-
 public class ProductDatabase extends Abstrat_FileDatabase<Product> {
     public ProductDatabase(String filename) {
         super(filename);

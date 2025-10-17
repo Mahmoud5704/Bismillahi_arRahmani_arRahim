@@ -1,5 +1,3 @@
-package tasks.absract_database;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -10,11 +8,11 @@ public class CustomerProductDatabase extends Abstrat_FileDatabase<CustomerProduc
 
     @Override
     public String getkey(CustomerProduct ob) {
-       return ob.getSearchKey();
+        return ob.getSearchKey();
     }
 
     @Override
-    public String getline(CustomerProduct ob) { 
+    public String getline(CustomerProduct ob) {
         return ob.lineRepresentation();
     }
 
