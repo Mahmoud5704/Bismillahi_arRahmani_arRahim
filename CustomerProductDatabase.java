@@ -10,15 +10,12 @@ public class CustomerProductDatabase extends Abstrat_FileDatabase<CustomerProduc
 
     @Override
     public String getkey(CustomerProduct ob) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return ob.getCustomerSSN() + "," + ob.getProductID() + "," + ob.getPurchaseDate().format(formatter);
+       return ob.getSearchKey();
     }
 
     @Override
-    public String getline(CustomerProduct ob) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return ob.getCustomerSSN() + "," + ob.getProductID() + "," + ob.getPurchaseDate().format(formatter)
-                + "," + ob.isPaid();
+    public String getline(CustomerProduct ob) { 
+        return ob.lineRepresentation();
     }
 
     @Override

@@ -8,13 +8,13 @@ public class EmployeeUserDatabase extends Abstrat_FileDatabase<EmployeeUser> {
 
     @Override
     public String getkey(EmployeeUser ob) {
-        return ob.getEmployeeId();
+        return ob.getSearchKey();
     }
 
     @Override
     public String getline(EmployeeUser ob) {
-        return ob.getEmployeeId() + "," + ob.getName() + "," + ob.getEmail() + "," + ob.getAddress() + ","
-                + ob.getPhoneNumber();
+        return ob.lineRepresentation();
+
     }
 
     @Override

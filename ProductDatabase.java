@@ -7,13 +7,12 @@ public class ProductDatabase extends Abstrat_FileDatabase<Product> {
 
     @Override
     public String getkey(Product ob) {
-        return ob.getProductID();
+        return ob.getSearchKey();
     }
 
     @Override
     public String getline(Product ob) {
-        return ob.getProductID() + "," + ob.getProductName() + "," + ob.getManufacturerName() + ","
-                + ob.getSupplierName() + "," + Integer.toString(ob.getQuantity()) + "," + Float.toString(ob.getPrice());
+        return ob.lineRepresentation();
     }
 
     @Override
