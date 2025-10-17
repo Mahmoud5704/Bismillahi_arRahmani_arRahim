@@ -4,10 +4,8 @@
  */
 import java.time.LocalDate;  
 import java.time.temporal.ChronoUnit;
-import java.util.InputMismatchException;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Arrays;
+
 
 public class EmployeeRole 
 {
@@ -78,14 +76,9 @@ public class EmployeeRole
     //5-**
     public double returnProduct(String customerSSN, String productID, LocalDate purchaseDate ,LocalDate returnDate)
     {
-        if(returnDate.isBefore(purchaseDate))
+        if(returnDate.isBefore(purchaseDate) || !productsDatabase.contains(productID) || !customerproductDatabase.contains(customerSSN+","+productID+","+ purchaseDate) || ChronoUnit.DAYS.between(purchaseDate, returnDate) > 14)
             return -1;
-        else if(productsDatabase.contains(productID)==false)
-            return -1;
-        else if(customerproductDatabase.contains(customerSSN+","+productID+","+ purchaseDate)==false)
-            return -1;
-        else if(ChronoUnit.DAYS.between(purchaseDate, returnDate)>14)
-            return -1;
+
         Product product = productsDatabase.getRecord(productID);
         int q = product.getQuantity();        
         
@@ -125,3 +118,4 @@ public class EmployeeRole
         customerproductDatabase.saveToFile();
     }
 }
+
