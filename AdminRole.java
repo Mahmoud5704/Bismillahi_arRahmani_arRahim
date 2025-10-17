@@ -5,7 +5,7 @@
 
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 
 public class AdminRole 
@@ -19,14 +19,14 @@ public class AdminRole
        database.readFromFile();
     }
     //class contains four methods:
-    //1-adds a new employee to the file named Employees.txt
+    //1
     public void addEmployee(String employeeId, String name, String email, String address, String phoneNumber)
     {
         EmployeeUser user = new EmployeeUser (employeeId,name,email,address,phoneNumber);
         database.insertRecord(user);
         database.saveToFile();   
     }
-    //2-returns an array that contains all the employees stored in the file named Employees.txt
+    //2
     public EmployeeUser[] getListOfEmployees()
     {
         
@@ -39,18 +39,19 @@ public class AdminRole
         }
         return employees.toArray(new EmployeeUser[0]);
     }
-    //3-: removes the employee whose employee id equals the parameter key from the file named Employees.txt
+    //3
     public void removeEmployee(String key)
     {
         database.deleteRecord(key);
         database.saveToFile();
     }
-    //4-writes all unsaved data to the file named Employees.txt
+    //4
     @Override
     public void logout()
     { 
         database.saveToFile();
     }
 }
+
 
 
