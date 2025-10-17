@@ -31,14 +31,14 @@ public class EmployeeRole
     
 
     //class contains six methods:
-    //1-adds a new product to the file named Products.txt.
+    //1
     public void addProduct(String productID, String productName, String manufacturerName, String supplierName, int quantity)
     {
         Product product = new Product(productID,productName,manufacturerName,supplierName,quantity);
         productsDatabase.insertRecord(product);
         productsDatabase.saveToFile();
     }
-    //2-returns an array that contains all the products stored in the file named Products.txt.
+    //2
     public Product[] getListOfProducts()
     {
         ArrayList<Product> products = productsDatabase.returnAllRecords();
@@ -49,7 +49,7 @@ public class EmployeeRole
         }
         return products.toArray(new Product[0]);
     }
-    //3-returns an array that contains all the purchasing operations stored in the file named CustomersProducts.txt
+    //3
     public CustomerProduct[] getListOfPurchasingOperations()
     {
         ArrayList<CustomerProduct> customerproduct = customerproductDatabase.returnAllRecords();
@@ -60,7 +60,7 @@ public class EmployeeRole
         }
         return customerproduct.toArray(new CustomerProduct[0]);
     }
-    //4-returns false if the quantity variable of the product whose product id matches the parameter productID is zero. Otherwise, the method decreases the quantity variable of the product by one, adds a new purchasing operation to the file named CustomersProducts.txt, updates the file Products.txt and returns true.
+    //4
     public boolean purchaseProduct(String customerSSN, String productID, LocalDate purchaseDate)
     {
         Product product = productsDatabase.getRecord(productID);
@@ -97,7 +97,7 @@ public class EmployeeRole
             return Double.parseDouble(datas[5]);
         
     }
-    //6-This method marks a customer purchase a product. It searches for the purchaserecord in the that matches the given customerSSN and purchaseDate. If the record exists and is not already marked as paid, the method updates the paid flag to true and saves the update.
+    //6-
     public boolean applyPayment(String customerSSN, LocalDate purchaseDate)
     {
         ArrayList<CustomerProduct> datas = customerproductDatabase.returnAllRecords();
@@ -121,6 +121,7 @@ public class EmployeeRole
         customerproductDatabase.saveToFile();
     }
 }
+
 
 
 
