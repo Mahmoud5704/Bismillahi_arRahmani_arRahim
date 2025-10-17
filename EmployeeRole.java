@@ -35,7 +35,7 @@ public class EmployeeRole
     public void addProduct(String productID, String productName, String manufacturerName, String supplierName, int quantity)
     {
         Product product = new Product(productID,productName,manufacturerName,supplierName,quantity);
-        productsDatabase.insertRecord(product);////////////////////////////////////////////////////////////////////////////////
+        productsDatabase.insertRecord(product);
         productsDatabase.saveToFile();
     }
     //2-returns an array that contains all the products stored in the file named Products.txt.
@@ -121,5 +121,6 @@ public class EmployeeRole
         customerproductDatabase.saveToFile();
     }
 }
+
 
 
