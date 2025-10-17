@@ -16,7 +16,7 @@ public class Validation {
 //        return true;
 //    }
     public static boolean verifyName(String name){
-        return true; //verify name
+        return true;
     }
     public static boolean verifyEmail(String email){
         return true; //verify email
