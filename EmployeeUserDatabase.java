@@ -1,4 +1,3 @@
-package tasks.absract_database;
 
 public class EmployeeUserDatabase extends Abstrat_FileDatabase<EmployeeUser> {
 
