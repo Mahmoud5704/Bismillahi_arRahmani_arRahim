@@ -15,21 +15,7 @@ public class JavaApplication6 {
     /**
      * @param args the command line arguments
      */
-    public static boolean verifyID(String ID){
-        if(ID.length() <= 1)
-            return false;
-        //make sure the ID contains letters and numbers only!
-        return true;
-    }
-    public static boolean verifyName(String name){
-        return true; //verify name
-    }
-    public static boolean verifyEmail(String email){
-        return true; //verify email
-    }
-    public static boolean verifyPhoneNum(String num){
-        return true; //verify phone number
-    }
+    
     public static char parseChoice(String choice_str){
         if (choice_str.length() > 1)
             return ' '; //throw away val
@@ -48,12 +34,6 @@ public class JavaApplication6 {
             switch(command){
                 case 'a':
                 case 'A':
-                    System.out.print("employee ID: ");
-                    String ID = ascanner.nextLine();
-                    if(!verifyID(ID)){
-                        System.out.println("ID must contains letters and numbers only!");
-                        break;
-                    }
                     System.out.print("employee name: ");
                     String name = ascanner.nextLine();
                     if(!verifyName(name)){
@@ -70,18 +50,66 @@ public class JavaApplication6 {
                     String address = ascanner.nextLine();
                     System.out.print("employee phone number: ");
                     String phone_num = ascanner.nextLine();
-                    if(!verifyPhoneNum(phone_num)){
+                    if(!Validation.verifyPhoneNum(phone_num)){
                         System.out.println("phone number must contain 11 digits");
                         break;
+                    }
+                    //generate ID for employee
+                    EmployeeUser[] employees = acc.getListOfEmployees();
+                    while(true){
+                        int num_part = (int) (Math.random() * 1000);
+                        String ID = "E" + num_part;
+                        boolean already_exist = false;
+                        for(int i = 0; i < employees.length; i++){
+                            if(employees.getSearchKey() == ID){
+                                already_exist = true;
+                                break;
+                            }
+                        }
+                        if(already_exist == true){
+                            continue;
+                        }
+                        else{
+                            break;
+                        }
                     }
                     acc.addEmployee(ID, name, email, address, phone_num);
                     break;
                 case 'b':
                 case 'B':
+                    EmployeeUser[] employees = acc.getListOfEmployees();
+                    System.out.println("ID, name, email, address, phone number");
+                    for(int i = 0; i < employees.length; i++){
+                        System.out.println(employees[i].lineRepresentation());
+                    }
                     break;
                 case 'c':
                 case 'C':
+                    EmployeeUser[] employees = acc.getListOfEmployees(); //list of employees before modification
+                    System.out.print("Enter ID of the employee to be removed: ");
+                    String target_ID = ascanner.nextLine();
+                    //verify ID?
+                    boolean does_employee_exist = false;
+                    for(int i = 0; i < employees.length; i++){
+                        if (employees[i].getSearchKey() == target_ID){
+                            does_employee_exist = true;
+                            break;
+                        }
+                    }
+                    if(does_employee_exist){
+                        acc.removeEmployee(target_ID);
+                    }
+                    else{
+                        System.out.println("no employee has the given ID... Please try again");
+                    }
                     break;
+                case 'q':
+                case 'Q':
+                    acc.logout();
+                    logged_in = false;
+                    break;
+                default:
+                    System.out.println("incorrect input! you must select one of the following options:");
             }
         }
     }
