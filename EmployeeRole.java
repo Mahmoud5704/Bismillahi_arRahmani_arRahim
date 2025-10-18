@@ -54,7 +54,7 @@ public class EmployeeRole {
     // 4
     public boolean purchaseProduct(String customerSSN, String productID, LocalDate purchaseDate) {
         Product product = productsDatabase.getRecord(productID);
-        if (product == null || product.getQuantity())
+        if (product == null || product.getQuantity() <= 0)
             return false;
 
         else {
@@ -108,3 +108,4 @@ public class EmployeeRole {
         customerproductDatabase.saveToFile();
     }
 }
+
