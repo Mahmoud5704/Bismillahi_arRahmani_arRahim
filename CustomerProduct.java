@@ -1,4 +1,4 @@
-
+package full_project;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -35,11 +35,11 @@ public class CustomerProduct implements interface_Record {
     public void setPaid(boolean paid) {
         this.paid = paid;
     }
-   @override
+   @Override
     public String lineRepresentation() {
         return customerSSN + "," + productID + "," + purchaseDate.format(formatter) + "," + paid;
     }
-    @override
+    @Override
     public String getSearchKey() {
         return customerSSN + "," + productID + "," + purchaseDate.format(formatter);
     }

@@ -1,13 +1,14 @@
+package full_project;
 import java.util.ArrayList;
 
 
-public class AdminRole {
+public class AdminRole implements interface_UserRole{
     // variable:
     private EmployeeUserDatabase database;
 
     // constructor:
     public AdminRole() {
-        database = new EmployeeUserDatabase(mainclass.Employeefile);
+        database = new EmployeeUserDatabase(main.Employeefile);
         database.readFromFile();
     }
 

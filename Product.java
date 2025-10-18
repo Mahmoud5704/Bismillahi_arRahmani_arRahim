@@ -1,3 +1,4 @@
+package full_project;
 public class Product implements interface_Record {
     private String productID;
     private String productName;

@@ -1,18 +1,19 @@
+package full_project;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
-public class EmployeeRole {
+public class EmployeeRole implements interface_UserRole{
     // variable:
-    private ProductsDatabase productsDatabase;
+    private ProductDatabase productsDatabase;
     private CustomerProductDatabase customerproductDatabase;
 
     // constructor:
     public EmployeeRole() {
 
-        productsDatabase = new ProductsDatabase(mainclass.Productsfile);
+        productsDatabase = new ProductDatabase(main.Productsfile);
         productsDatabase.readFromFile();
-        customerproductDatabase = new CustomerProductDatabase(mainclass.CustomersProductsfile);
+        customerproductDatabase = new CustomerProductDatabase(main.CustomersProductsfile);
         customerproductDatabase.readFromFile();
     }
 
@@ -40,7 +41,7 @@ public class EmployeeRole {
         }
         return products.toArray(new Product[0]);
     }
-
+  
     // 3
     public CustomerProduct[] getListOfPurchasingOperations() {
         ArrayList<CustomerProduct> customerproduct = customerproductDatabase.returnAllRecords();
@@ -54,7 +55,7 @@ public class EmployeeRole {
     // 4
     public boolean purchaseProduct(String customerSSN, String productID, LocalDate purchaseDate) {
         Product product = productsDatabase.getRecord(productID);
-        if (product == null || product.getQuantity())
+        if (product == null ||  product.getQuantity() <= 0)
             return false;
 
         else {

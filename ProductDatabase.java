@@ -1,3 +1,4 @@
+package full_project;
 public class ProductDatabase extends Abstrat_FileDatabase<Product> {
     public ProductDatabase(String filename) {
         super(filename);
