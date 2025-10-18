@@ -11,7 +11,9 @@ import java.util.Scanner;
  * @author zeyad
  */
 public class JavaApplication6 {
-
+    public static final String Employeefile = "Employee.txt";
+     public static final String Productsfile = "Products.txt";
+    public static final String CustomersProductsfile = "CustomersProducts.txt"; 
     /**
      * @param args the command line arguments
      */
