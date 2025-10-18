@@ -2,11 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package javaapplication6;
+package full_project;
 
 import java.util.Scanner;
-import static javaapplication6.JavaApplication6.generateID;
-import static javaapplication6.JavaApplication6.parseChoice;
 
 /**
  *
@@ -14,14 +12,15 @@ import static javaapplication6.JavaApplication6.parseChoice;
  */
 public class AdminAcc {
     public static void pannel(){
-        acc = AdminRole();
+        AdminRole acc = new AdminRole();
         boolean logged_in = true;
         Scanner ascanner = new Scanner(System.in);
+        EmployeeUser[] employees;
         while(logged_in){
             System.out.println("=================================");
             System.out.println("A) Add employee\nB) list employees\nC) remove employee\nQ) logout");
             String command_str = ascanner.nextLine();
-            char command = parseChoice(command_str);
+            char command = Validation.parseChoice(command_str);
             switch(command){
                 case 'a':
                     System.out.print("employee name: ");
@@ -45,23 +44,23 @@ public class AdminAcc {
                         break;
                     }
                     //generate ID for employee
-                    EmployeeUser[] employees = acc.getListOfEmployees();
+                    employees = acc.getListOfEmployees();
                     String[] IDs = new String[employees.length];
                     for(int i = 0; i < IDs.length; i++){
                         IDs[i] = employees[i].getSearchKey();
                     }
-                    String ID = generateID("E", IDs);
+                    String ID = Validation.generateID("E", IDs);
                     acc.addEmployee(ID, name, email, address, phone_num);
                     break;
                 case 'b':
-                    EmployeeUser[] employees = acc.getListOfEmployees();
+                    employees = acc.getListOfEmployees();
                     System.out.println("ID, name, email, address, phone number");
                     for(int i = 0; i < employees.length; i++){
                         System.out.println(employees[i].lineRepresentation());
                     }
                     break;
                 case 'c':
-                    EmployeeUser[] employees = acc.getListOfEmployees(); //list of employees before modification
+                    employees = acc.getListOfEmployees(); //list of employees before modification
                     System.out.print("Enter ID of the employee to be removed: ");
                     String target_ID = ascanner.nextLine();
                     boolean does_employee_exist = false;

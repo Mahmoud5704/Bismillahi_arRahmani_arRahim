@@ -2,12 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package javaapplication6;
+package full_project;
 
 import java.time.LocalDate;
 import java.util.Scanner;
-import static javaapplication6.JavaApplication6.generateID;
-import static javaapplication6.JavaApplication6.parseChoice;
 
 /**
  *
@@ -15,19 +13,28 @@ import static javaapplication6.JavaApplication6.parseChoice;
  */
 public class EmployeeAcc {
     public static void pannel(){
-        acc = EmployeeRole();
+        EmployeeRole acc = new EmployeeRole();
         boolean logged_in = true;
         Scanner escanner = new Scanner(System.in);
         System.out.println("select command:");
         System.out.println("A) Add product\nB) list products\nC) list purchasing operations\nD) purchase product");
         System.out.println("E) return product\nF) apply payment\nQ) logout");
         String command_str = escanner.nextLine();
-        char choice = parseChoice(command_str);
+        char choice = Validation.parseChoice(command_str);
+        String SSN;
+        String purchaseDate_str;
+        LocalDate purchaseDate;
+        String productID;
+        boolean success;
+        Product products[];
         switch(choice){
             case 'a':
                 System.out.print("Enter product name: ");
                 String productName = escanner.nextLine();
-                //verify product name?
+                if(!Validation.verifyName(productName)){ //modify the function to allow digits for product names?
+                        System.out.println("Names must only contain letters!");
+                        break;
+                }
                 System.out.print("Enter manufacturer name: ");
                 String manufacturerName = escanner.nextLine();
                 //verify manufacturer name?
@@ -47,16 +54,36 @@ public class EmployeeAcc {
                     System.out.println("Quantity must be a positive number!");
                     break;
                 }
-                Product[] products = acc.getListOfProducts();
+                products = acc.getListOfProducts();
                 String[] IDs = new String[products.length];
                 for(int i = 0; i < IDs.length; i++){
                     IDs[i] = products[i].getSearchKey();
                 }
-                String ID = generateID("P", IDs);
-                acc.addProduct(ID, productName, manufacturerName, supplierName, quant);
+//                String ID = generateID("P", IDs);
+                System.out.print("Enter product ID: ");
+                productID = escanner.nextLine();
+                if(!Validation.verifyID(productID)){
+                    System.out.println("ID must start with a letter followed by 4 integers");
+                    break;
+                }
+                System.out.print("Enter product price: ");
+                String price_str = escanner.nextLine();
+                float price;
+                try{
+                    price = Float.parseFloat(price_str);
+                    if(price <= 0){
+                        System.out.println("Price must be a positive number!");
+                        break;
+                    }
+                }
+                catch(Exception e){
+                    System.out.println("Price must be a positive number!");
+                    break;
+                }
+                acc.addProduct(productID, productName, manufacturerName, supplierName, quant, price);
                 break;
             case 'b':
-                Product[] products = acc.getListOfProducts();
+                products = acc.getListOfProducts();
                 System.out.println("ID, product name, manufacturer name, supplier name, quantity");
                 for(int i = 0; i < products.length; i++){
                     System.out.println(products[i].lineRepresentation());
@@ -71,28 +98,93 @@ public class EmployeeAcc {
                 break;
             case 'd':
                 System.out.print("Enter customerSSN: ");
-                String SSN = escanner.nextLine();
+                SSN = escanner.nextLine();
                 //validate SSN
                 System.out.print("Enter product id: ");
-                String productID = escanner.nextLine();
-                //validate ID
+                productID = escanner.nextLine();
+                if(!Validation.verifyID(productID)){
+                    System.out.println("ID must start with a letter followed by 4 integers");
+                }
                 System.out.print("Enter purchase date: ");
-                String date = escanner.nextLine();
+                purchaseDate_str = escanner.nextLine();
                 try{
-                    LocalDate purchaseDate = LocalDate.parse(date); //check date format.
+                    purchaseDate = LocalDate.parse(purchaseDate_str); //check date format.
                 }
                 catch(Exception e){
                     System.out.println("incorrect date format!");
                     break;
                 }
-                boolean success = acc.purchaseProduct(SSN, productID, purchaseDate);
+                success = acc.purchaseProduct(SSN, productID, purchaseDate);
                 if(success)
                     System.out.println("product purchased successfully");
                 else
                     System.out.println("this product is not in stock!");
                 break;
             case 'e':
-                
+                System.out.print("Enter customer SSN");
+                SSN = escanner.nextLine();
+                //validate SSN
+                System.out.print("Enter product ID: ");
+                productID = escanner.nextLine();
+                if(!Validation.verifyID(productID)){
+                    System.out.println("ID must start with a letter followed by 4 integers");
+                    break;
+                }
+                System.out.print("Enter purchase date: ");
+                purchaseDate_str = escanner.nextLine();
+                //validate date
+                try{
+                    purchaseDate = LocalDate.parse(purchaseDate_str);
+                }
+                catch(Exception e){
+                    System.out.println("incorrect date formate!");
+                    break;
+                }
+                System.out.println("Enter return date: ");
+                String returnDate_str = escanner.nextLine();
+                LocalDate returnDate;
+                try{
+                    returnDate = LocalDate.parse(returnDate_str);
+                }
+                catch(Exception e){
+                    System.out.println("incorrect date formate!");
+                    break; 
+                }
+                //validate date
+                double result = acc.returnProduct(SSN, productID,purchaseDate ,returnDate);
+                if(result == -1){
+                    System.out.println("unable to return product, verify your input!");
+                }
+                else{
+                    System.out.println("product sold for " + result + " EGP successfully!");
+                }
+                break;
+            case 'f':
+                System.out.print("Enter customer SSN: ");
+                SSN = escanner.nextLine();
+                System.out.print("Enter purchase date: ");
+                purchaseDate_str = escanner.nextLine();
+                try{
+                    purchaseDate = LocalDate.parse(purchaseDate_str);
+                }
+                catch(Exception e){
+                    System.out.println("incorrect date format!");
+                    break;
+                }
+                success = acc.applyPayment(SSN, purchaseDate);
+                if(success){
+                    System.out.println("payment applied successfully!");
+                }
+                else{
+                    System.out.println("this record doesn't exist or it has already been paid!");
+                }
+                break;
+            case 'q':
+                acc.logout();
+                logged_in = false;
+                break;
+            default:
+                System.out.println("incorrect choice.");
         }
     }
 }
