@@ -39,7 +39,7 @@ public class AdminAcc {
                     String address = ascanner.nextLine();
                     System.out.print("employee phone number: ");
                     String phone_num = ascanner.nextLine();
-                    if(!Validation.verifyPhoneNum(phone_num)){
+                    if(!Validation.verifyNum(phone_num, 11)){
                         System.out.println("phone number must contain 11 digits");
                         break;
                     }
@@ -65,7 +65,7 @@ public class AdminAcc {
                     String target_ID = ascanner.nextLine();
                     boolean does_employee_exist = false;
                     for(int i = 0; i < employees.length; i++){
-                        if (employees[i].getSearchKey() == target_ID){
+                        if (employees[i].getSearchKey().equals(target_ID)){
                             does_employee_exist = true;
                             break;
                         }

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package full_project;
-
+//import java.lang.org.apache.commons.validator.routines.EmailValidator;
 import java.util.regex.Pattern;
 
 /**
@@ -48,16 +48,24 @@ public class Validation {
     public static boolean verifyName(String name){
         if(name.length() < 1)
             return false;
-        boolean result = Pattern.matches("[a-zA-Z]{" + name.length() + "}", name); //make sure all the characters of name are between a and z 
+        boolean result = Pattern.matches("[a-zA-Z]+( [a-zA-Z]+)*", name); //make sure all the characters of name are between a and z 
         return result;
     }
     public static boolean verifyEmail(String email){
-        return true; //verify email
+        if(email.length() > 100 || email.length() < 6) //max and min sizes for email
+            return false;
+//        boolean areTherePattern.matches("[0-9]{" + num_part.length() + "}", num_part);
+        String regex = "^[A-Za-z0-9+_.-] +@[A-Za-z0-9.-]+$";
+//        boolean result = Pattern.matches(regex, email);
+//        return result;
+//        return email.matches(regex);
+        return true;
     }
-    public static boolean verifyPhoneNum(String num){
+    public static boolean verifyNum(String num, int length){
         try{
-            int num_test = Integer.parseInt(num);
-            if(num.length() == 11){
+//            long num_test = Integer.parseInt(num);
+            long num_test = Long.parseLong(num);
+            if(num.length() == length){
                 return true;
             }
             else{

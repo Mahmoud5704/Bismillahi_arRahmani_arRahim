@@ -16,6 +16,7 @@ public class EmployeeAcc {
         EmployeeRole acc = new EmployeeRole();
         boolean logged_in = true;
         Scanner escanner = new Scanner(System.in);
+        while(logged_in){
         System.out.println("select command:");
         System.out.println("A) Add product\nB) list products\nC) list purchasing operations\nD) purchase product");
         System.out.println("E) return product\nF) apply payment\nQ) logout");
@@ -99,7 +100,10 @@ public class EmployeeAcc {
             case 'd':
                 System.out.print("Enter customerSSN: ");
                 SSN = escanner.nextLine();
-                //validate SSN
+                if(!Validation.verifyNum(SSN, 14)){
+                    System.out.println("invalid SSN, SSN must consist of 14 digits");
+                    break;
+                }
                 System.out.print("Enter product id: ");
                 productID = escanner.nextLine();
                 if(!Validation.verifyID(productID)){
@@ -123,7 +127,10 @@ public class EmployeeAcc {
             case 'e':
                 System.out.print("Enter customer SSN");
                 SSN = escanner.nextLine();
-                //validate SSN
+                if(!Validation.verifyNum(SSN, 14)){
+                    System.out.println("invalid SSN, SSN must consist of 14 digits");
+                    break;
+                }
                 System.out.print("Enter product ID: ");
                 productID = escanner.nextLine();
                 if(!Validation.verifyID(productID)){
@@ -162,6 +169,10 @@ public class EmployeeAcc {
             case 'f':
                 System.out.print("Enter customer SSN: ");
                 SSN = escanner.nextLine();
+                if(!Validation.verifyNum(SSN, 14)){
+                    System.out.println("invalid SSN, SSN must consist of 14 digits");
+                    break;
+                }
                 System.out.print("Enter purchase date: ");
                 purchaseDate_str = escanner.nextLine();
                 try{
@@ -185,6 +196,7 @@ public class EmployeeAcc {
                 break;
             default:
                 System.out.println("incorrect choice.");
+        }
         }
     }
 }
