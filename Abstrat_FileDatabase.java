@@ -1,5 +1,3 @@
-package tasks.absract_database;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -36,14 +34,14 @@ public abstract class Abstrat_FileDatabase<T> {
         } catch (FileNotFoundException e) {
             System.out.println("ERROR : FILE NOT FOUND");
         }
-    }//     bezn allah done
+    }// bezn allah done
 
     public ArrayList<T> returnAllRecords() {
         if (records.isEmpty()) {
             System.out.print("there is no record yet!");
         }
         return records;
-    }//     bezn allah done
+    }// bezn allah done
 
     public boolean contains(String key) {
         if (records.isEmpty()) {
