@@ -15,7 +15,7 @@ public class CustomerProduct implements interface_Record {
         this.productID = productID;
         this.purchaseDate = purchaseDate;
     }
-
+     
     public String getCustomerSSN() {
         return customerSSN;
     }
@@ -35,11 +35,11 @@ public class CustomerProduct implements interface_Record {
     public void setPaid(boolean paid) {
         this.paid = paid;
     }
-
+   @override
     public String lineRepresentation() {
         return customerSSN + "," + productID + "," + purchaseDate.format(formatter) + "," + paid;
     }
-
+    @override
     public String getSearchKey() {
         return customerSSN + "," + productID + "," + purchaseDate.format(formatter);
     }
