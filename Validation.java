@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package full_project;
-//import java.lang.org.apache.commons.validator.routines.EmailValidator;
 import java.util.regex.Pattern;
 
 /**
@@ -55,11 +54,11 @@ public class Validation {
         if(email.length() > 100 || email.length() < 6) //max and min sizes for email
             return false;
 //        boolean areTherePattern.matches("[0-9]{" + num_part.length() + "}", num_part);
-        String regex = "^[A-Za-z0-9+_.-] +@[A-Za-z0-9.-]+$";
-//        boolean result = Pattern.matches(regex, email);
-//        return result;
+        String regex = "^[a-zA-Z0-9._-]+[@][a-zA-Z0-9]+[a-zA-Z0-9._-]*[a-zA-Z0-9]+[.][a-zA-Z]+$";
+        boolean result = Pattern.matches(regex, email);
+        return result;
 //        return email.matches(regex);
-        return true;
+//        return true;
     }
     public static boolean verifyNum(String num, int length){
         try{
