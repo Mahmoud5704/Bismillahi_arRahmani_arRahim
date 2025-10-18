@@ -21,7 +21,7 @@ public class AdminRole {
     // 2
     public EmployeeUser[] getListOfEmployees() {
 
-        List<EmployeeUser> employees = database.returnAllRecords();
+        ArrayList<EmployeeUser> employees = database.returnAllRecords();
         if (employees == null || employees.isEmpty()) {
             System.out.printf("\nthere is NO Employees in the file\n");
             return new EmployeeUser[0];
@@ -40,4 +40,5 @@ public class AdminRole {
     public void logout() {
         database.saveToFile();
     }
+
 }
