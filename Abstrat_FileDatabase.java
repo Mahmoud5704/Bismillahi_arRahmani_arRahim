@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Abstrat_FileDatabase<T> {
-
     protected ArrayList<T> records = new ArrayList<>();
     protected String filename;
 
@@ -112,3 +111,4 @@ public abstract class Abstrat_FileDatabase<T> {
         }
     }// bezn allah done
 }
+
