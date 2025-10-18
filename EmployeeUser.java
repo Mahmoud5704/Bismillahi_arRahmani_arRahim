@@ -12,11 +12,11 @@ public class EmployeeUser implements interface_Record {
         this.Address = address;
         this.PhoneNumber = phoneNumber;
     }
-
+    @Override
     public String lineRepresentation() {
         return this.employeeId + "," + this.Name + "," + this.Email + "," + this.Address + "," + this.PhoneNumber;
     }
-
+    @Override
     public String getSearchKey() {
         return this.employeeId;
     }
