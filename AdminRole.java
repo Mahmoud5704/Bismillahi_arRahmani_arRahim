@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+
 public class AdminRole {
     // variable:
     private EmployeeUserDatabase database;
@@ -42,3 +43,4 @@ public class AdminRole {
     }
 
 }
+
