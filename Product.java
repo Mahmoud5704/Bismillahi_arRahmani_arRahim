@@ -23,12 +23,12 @@ public class Product implements interface_Record {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
+    @Override
     public String lineRepresentation() {
         return this.productID + "," + this.productName + "," + this.manufacturerName + "," + this.supplierName + ","
                 + this.quantity + "," + this.price;
     }
-
+    @Override
     public String getSearchKey() {
         return this.productID;
     }
