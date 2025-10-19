@@ -10,7 +10,7 @@ public class Validation {
             return Character.toLowerCase(choice_str.charAt(0)); //converts it to lower case so that it is case insensitive
     }
     public static String generateID(String prefix) {
-    EmployeeUserDatabase db = new EmployeeUserDatabase("Employee.txt");  
+    EmployeeUserDatabase db = new EmployeeUserDatabase(main.Employeefile);  
     db.readFromFile();  
     while (true) {
         int num_part = (int) ((Math.random() * 9000) + 1000);
