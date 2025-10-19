@@ -38,7 +38,7 @@ public class Validation {
         return result;
     }
     public static boolean verifyEmail(String email){
-    if (email.length() > 100 || email.length() < 6)
+    if (email.length() > 100 || email.length() < 6) //maximum and minimum lengths for email
         return false;
 
     String regex = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+[a-zA-Z0-9._-]*[a-zA-Z0-9]+\\.[a-zA-Z]+$";
@@ -46,22 +46,14 @@ public class Validation {
 }
     
 
-    public static boolean verifyNum(String num, int length) 
-    {
-    if (num == null) 
-        return false;
-    if (num.length() != length) 
-        return false;
-    return num.matches("^01[2501]\\d{8}$");
+    public static boolean verifyPhoneNum(String num){
+        if (num == null || num.length() != 11) 
+            return false;
+        return num.matches("^01[2501]\\d{8}$");
     }
-   public static boolean verifyNum(String num, int length) 
-    {
-    if (num == null) 
-        return false;
-    if (num.length() != length) 
-        return false;
-    return num.matches("^01[2501]\\d{8}$");
-    
-}
-
+    public static boolean verifySSN(String num){
+        if(num == null || num.length() != 14)
+            return false;
+        return num.matches("^[0-9]{14}$");
+    }
 }

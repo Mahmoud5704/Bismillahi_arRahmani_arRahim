@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class EmployeeAcc {
 
     public static boolean verifySSN(String SSN) {
-        if(!Validation.verifyNum(SSN, 14)) {
+        if(!Validation.verifySSN(SSN)) {
             System.out.println("invalid SSN, SSN must consist of 14 digits");
             return false;
         }
