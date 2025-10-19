@@ -53,19 +53,13 @@ public class Validation {
 //        return email.matches(regex);
 //        return true;
     }
-    public static boolean verifyNum(String num, int length){
-        try{
-//            long num_test = Integer.parseInt(num);
-            long num_test = Long.parseLong(num);
-            if(num.length() == length){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-        catch(Exception e){
-            return false;
-        }
-    }
+   public static boolean verifyNum(String num, int length) 
+    {
+    if (num == null) 
+        return false;
+    if (num.length() != length) 
+        return false;
+    return num.matches("^01[2501]\\d{8}$");
+}
+
 }
