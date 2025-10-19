@@ -38,7 +38,7 @@ public class AdminAcc {
                     }
                     //generate ID for employee
                     
-                    String ID = Validation.generateID("E", IDs);
+                    String ID = Validation.generateID("E");
                     acc.addEmployee(ID, name, email, address, phone_num);
                     break;
                 case 'b':
