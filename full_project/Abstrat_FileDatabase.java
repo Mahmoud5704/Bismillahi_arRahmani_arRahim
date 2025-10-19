@@ -35,15 +35,17 @@ public abstract class Abstrat_FileDatabase<T extends interface_Record> {
     }// bezn allah done
 
     public ArrayList<T> returnAllRecords() {
-      
+        readFromFile();
         return records;
     }// bezn allah done
 
     public boolean contains(String key) {
+        readFromFile();
         return getRecord(key) != null;
     }// bezn allah done
 
     public T getRecord(String key) {
+        readFromFile();
         if (records.isEmpty()) {
             return null;
 
@@ -58,6 +60,7 @@ public abstract class Abstrat_FileDatabase<T extends interface_Record> {
     }// bezn allah done
 
     public void deleteRecord(String key) {
+        readFromFile();
         if (!contains(key)) {
            return;
         }
@@ -70,6 +73,7 @@ public abstract class Abstrat_FileDatabase<T extends interface_Record> {
     }// bezn allah done
 
     public void insertRecord(T record) {
+        readFromFile();
         if (!contains(record.getSearchKey())) {
             records.add(record);
         }
