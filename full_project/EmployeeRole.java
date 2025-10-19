@@ -27,21 +27,22 @@ public class EmployeeRole implements interface_UserRole{
     // 1
     public void addProduct(String productID, String productName, String manufacturerName, String supplierName,
             int quantity) {
-        System.out.print("Enter product price: ");
+          System.out.print("Enter product price: ");
+                    Scanner escanner = new Scanner(System.in);
                     String price_str = escanner.nextLine();
                     float price;
                     try{
                         price = Float.parseFloat(price_str);
                         if(price <= 0){
                             System.out.println("Price must be a positive number!");
-                            break;
+                            return;
                         }
                     }
                     catch(Exception e){
                         System.out.println("Price must be a positive number!");
-                        break;
+                        return;
                     }
-        Product product = new Product(productID, productName, manufacturerName, supplierName, quantity, price); //missing price argument
+        Product product = new Product(productID, productName, manufacturerName, supplierName, quantity); 
        
         productsDatabase.insertRecord(product);
         productsDatabase.saveToFile();
