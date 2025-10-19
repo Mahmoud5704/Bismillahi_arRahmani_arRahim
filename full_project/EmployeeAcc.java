@@ -82,21 +82,8 @@ public class EmployeeAcc {
                     if(!verifyProductID(productID)){
                         break;
                     }
-                    System.out.print("Enter product price: ");
-                    String price_str = escanner.nextLine();
-                    float price;
-                    try{
-                        price = Float.parseFloat(price_str);
-                        if(price <= 0){
-                            System.out.println("Price must be a positive number!");
-                            break;
-                        }
-                    }
-                    catch(Exception e){
-                        System.out.println("Price must be a positive number!");
-                        break;
-                    }
-                    acc.addProduct(productID, productName, manufacturerName, supplierName, quant, price);
+                    
+                    acc.addProduct(productID, productName, manufacturerName, supplierName, quant);
                     break;
                 case 'b':
                     products = acc.getListOfProducts();
