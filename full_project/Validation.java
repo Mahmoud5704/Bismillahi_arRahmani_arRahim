@@ -46,12 +46,14 @@ public class Validation {
 }
     
 
-    public static boolean verifyNum(String num, int length){
-    try {
-        Long.parseLong(num);
-        return num.length() == length;
-    } catch (Exception e) {
+    public static boolean verifyNum(String num, int length) 
+    {
+    if (num == null) 
         return false;
+    if (num.length() != length) 
+        return false;
+    return num.matches("^01[2501]\\d{8}$");
     }
+
     }
-}
+
