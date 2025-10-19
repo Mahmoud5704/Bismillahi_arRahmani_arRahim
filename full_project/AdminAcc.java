@@ -48,24 +48,18 @@ public class AdminAcc {
                         System.out.println(employees[i].lineRepresentation());
                     }
                     break;
-                case 'c':
-                    employees = acc.getListOfEmployees(); //list of employees before modification
+               
+
+               case 'c':
                     System.out.print("Enter ID of the employee to be removed: ");
                     String target_ID = ascanner.nextLine();
-                    boolean does_employee_exist = false;
-                    for(int i = 0; i < employees.length; i++){
-                        if (employees[i].getSearchKey().equals(target_ID)){
-                            does_employee_exist = true;
-                            break;
-                        }
-                    }
-                    if(does_employee_exist){
-                        acc.removeEmployee(target_ID);
-                    }
-                    else{
-                        System.out.println("no employee has the given ID... Please try again");
-                    }
-                    break;
+                    EmployeeUserDatabase db = new EmployeeUserDatabase(mainclass.Employeefile);
+                    if (db.contains(target_ID)) {
+                             acc.removeEmployee(target_ID);
+                    } else {
+                             System.out.println("no employee has the given ID... Please try again");
+                               }
+                     break;
                 case 'q':
                     acc.logout();
                     logged_in = false;
