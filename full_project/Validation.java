@@ -23,10 +23,8 @@ public class Validation {
     }
 }
     public static boolean verifyID(String ID){
-        if(ID.length() != 5)
-            return false;
         char firstChar = ID.charAt(0);
-        if (!Character.isUpperCase(firstChar)){ //make sure it only returns true with upper case LETTERS
+        if ( ID.length() != 5 || !Character.isUpperCase(firstChar)){ 
             return false;
         }
         String num_part = ID.substring(1);
@@ -40,28 +38,20 @@ public class Validation {
         return result;
     }
     public static boolean verifyEmail(String email){
-        if(email.length() > 100 || email.length() < 6) //max and min sizes for email
-            return false;
-//        boolean areTherePattern.matches("[0-9]{" + num_part.length() + "}", num_part);
-        String regex = "^[a-zA-Z0-9._-]+[@][a-zA-Z0-9]+[a-zA-Z0-9._-]*[a-zA-Z0-9]+[.][a-zA-Z]+$";
-        boolean result = Pattern.matches(regex, email);
-        return result;
-//        return email.matches(regex);
-//        return true;
-    }
+    if (email.length() > 100 || email.length() < 6)
+        return false;
+
+    String regex = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+[a-zA-Z0-9._-]*[a-zA-Z0-9]+\\.[a-zA-Z]+$";
+    return Pattern.matches(regex, email);
+}
+    
+
     public static boolean verifyNum(String num, int length){
-        try{
-//            long num_test = Integer.parseInt(num);
-            long num_test = Long.parseLong(num);
-            if(num.length() == length){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-        catch(Exception e){
-            return false;
-        }
+    try {
+        Long.parseLong(num);
+        return num.length() == length;
+    } catch (Exception e) {
+        return false;
+    }
     }
 }
