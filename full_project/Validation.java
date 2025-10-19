@@ -9,23 +9,19 @@ public class Validation {
         else
             return Character.toLowerCase(choice_str.charAt(0)); //converts it to lower case so that it is case insensitive
     }
-    public static String generateID(String prefix, String[] IDList){
-        while(true){
-            int num_part = (int) ((Math.random() * 9000) + 1000); //from 1000 to 9999
-            
-            String ID = prefix + num_part;
-            boolean already_exist = false;
-            for(int i = 0; i < IDList.length; i++){
-                if(IDList[i].equals(ID)){
-                    already_exist = true;
-                    break;
-                }
-            }
-            if(!already_exist){
-                return ID;
-            }
+    public static String generateID(String prefix) {
+    EmployeeUserDatabase db = new EmployeeUserDatabase("Employee.txt");  
+    db.readFromFile();  
+    while (true) {
+        int num_part = (int) ((Math.random() * 9000) + 1000);
+        String id = prefix + num_part;
+
+        boolean exists = db.contains(id);
+        if (!exists) {
+            return id;
         }
     }
+}
     public static boolean verifyID(String ID){
         if(ID.length() != 5)
             return false;
