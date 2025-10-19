@@ -63,5 +63,12 @@ public class Validation {
     return num.matches("^01[2501]\\d{8}$");
     
 }
+   public static boolean verifySSSN(String num, int length) {
+    if (num == null) 
+        return false;
+    if (num.length() != length) 
+        return false;
+    return num.matches("^\\d{" + length + "}$");
+}
 
 }
