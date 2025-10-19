@@ -37,12 +37,8 @@ public class AdminAcc {
                         break;
                     }
                     //generate ID for employee
-                    employees = acc.getListOfEmployees();
-                    String[] IDs = new String[employees.length];
-                    for(int i = 0; i < IDs.length; i++){
-                        IDs[i] = employees[i].getSearchKey();
-                    }
-                    String ID = Validation.generateID("E", IDs);
+                    
+                    String ID = Validation.generateID("E");
                     acc.addEmployee(ID, name, email, address, phone_num);
                     break;
                 case 'b':
@@ -52,24 +48,18 @@ public class AdminAcc {
                         System.out.println(employees[i].lineRepresentation());
                     }
                     break;
-                case 'c':
-                    employees = acc.getListOfEmployees(); //list of employees before modification
+               
+
+               case 'c':
                     System.out.print("Enter ID of the employee to be removed: ");
                     String target_ID = ascanner.nextLine();
-                    boolean does_employee_exist = false;
-                    for(int i = 0; i < employees.length; i++){
-                        if (employees[i].getSearchKey().equals(target_ID)){
-                            does_employee_exist = true;
-                            break;
-                        }
-                    }
-                    if(does_employee_exist){
-                        acc.removeEmployee(target_ID);
-                    }
-                    else{
-                        System.out.println("no employee has the given ID... Please try again");
-                    }
-                    break;
+                    EmployeeUserDatabase db = new EmployeeUserDatabase(main.Employeefile);
+                    if (db.contains(target_ID)) {
+                             acc.removeEmployee(target_ID);
+                    } else {
+                             System.out.println("no employee has the given ID... Please try again");
+                               }
+                     break;
                 case 'q':
                     acc.logout();
                     logged_in = false;
