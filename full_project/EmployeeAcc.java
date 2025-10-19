@@ -71,7 +71,7 @@ public class EmployeeAcc {
                         System.out.println("Quantity must be a positive number!");
                         break;
                     }            
-                    String ID = generateID("P");
+                    String ID = Validation.generateID("P");
                     System.out.print("Enter product price: ");
                     String price_str = escanner.nextLine();
                     float price;
@@ -86,7 +86,7 @@ public class EmployeeAcc {
                         System.out.println("Price must be a positive number!");
                         break;
                     }
-                    acc.addProduct(productID, productName, manufacturerName, supplierName, quant, price);
+                    acc.addProduct(ID, productName, manufacturerName, supplierName, quant, price);
                     break;
                 case 'b':
                     products = acc.getListOfProducts();
