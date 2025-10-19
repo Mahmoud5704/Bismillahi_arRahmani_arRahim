@@ -54,6 +54,14 @@ public class Validation {
         return false;
     return num.matches("^01[2501]\\d{8}$");
     }
+   public static boolean verifyNum(String num, int length) 
+    {
+    if (num == null) 
+        return false;
+    if (num.length() != length) 
+        return false;
+    return num.matches("^01[2501]\\d{8}$");
+    
+}
 
-    }
-
+}
