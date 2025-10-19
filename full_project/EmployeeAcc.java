@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class EmployeeAcc {
 
     public static boolean verifySSN(String SSN) {
-        if(!Validation.verifyNum(SSN, 14)) {
+        if(!Validation.verifySSN(SSN)) {
             System.out.println("invalid SSN, SSN must consist of 14 digits");
             return false;
         }
@@ -70,18 +70,8 @@ public class EmployeeAcc {
                     catch(Exception e){
                         System.out.println("Quantity must be a positive number!");
                         break;
-                    }
-                    products = acc.getListOfProducts();
-                    String[] IDs = new String[products.length];
-                    for(int i = 0; i < IDs.length; i++){
-                        IDs[i] = products[i].getSearchKey();
-                    }
-                    // String ID = generateID("P", IDs);
-                    System.out.print("Enter product ID: ");
-                    productID = escanner.nextLine();
-                    if(!verifyProductID(productID)){
-                        break;
-                    }
+                    }            
+                    String ID = generateID("P");
                     System.out.print("Enter product price: ");
                     String price_str = escanner.nextLine();
                     float price;

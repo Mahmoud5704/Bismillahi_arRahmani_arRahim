@@ -32,7 +32,7 @@ public class AdminAcc {
                     String address = ascanner.nextLine();
                     System.out.print("employee phone number: ");
                     String phone_num = ascanner.nextLine();
-                    if(!Validation.verifyNum(phone_num, 11)){
+                    if(!Validation.verifyPhoneNum(phone_num)){
                         System.out.println("phone number must contain 11 digits");
                         break;
                     }
