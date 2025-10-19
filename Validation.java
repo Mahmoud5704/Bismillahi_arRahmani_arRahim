@@ -24,7 +24,7 @@ public class Validation {
 }
     public static boolean verifyID(String ID){
         char firstChar = ID.charAt(0);
-        if ( ID.length() != 5 || !Character.isLetter(firstChar)){ 
+        if ( ID.length() != 5 || !Character.isUpperCase(firstChar)){ 
             return false;
         }
         String num_part = ID.substring(1);
