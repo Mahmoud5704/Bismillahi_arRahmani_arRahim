@@ -1,14 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package full_project;
 import java.util.regex.Pattern;
 
-/**
- *
- * @author zeyad
- */
 public class Validation {
     public static char parseChoice(String choice_str){
         if (choice_str.length() > 1)
