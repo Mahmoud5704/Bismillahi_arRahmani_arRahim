@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
 
 public class EmployeeRole implements interface_UserRole{
     // variable:
@@ -111,6 +112,18 @@ public class EmployeeRole implements interface_UserRole{
         System.out.println(" not found in database!");
         return -1;
     }
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+         String key = customerSSN + "," + productID + "," + purchaseDate.format(formatter);
+         CustomerProduct pp = customerproductDatabase.getRecord(key);
+
+         if (pp == null) {
+        System.out.println(" -not found in database!");
+        return -1;
+         }
+        if(!pp.isPaid())
+            return -1;
+       
+        
         updateProductQuantity(product, 1);
        // customerproductDatabase.readFromFile();
         customerproductDatabase.deleteRecord(customerSSN);
