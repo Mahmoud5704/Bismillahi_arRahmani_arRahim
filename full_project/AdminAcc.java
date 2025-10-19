@@ -37,11 +37,7 @@ public class AdminAcc {
                         break;
                     }
                     //generate ID for employee
-                    employees = acc.getListOfEmployees();
-                    String[] IDs = new String[employees.length];
-                    for(int i = 0; i < IDs.length; i++){
-                        IDs[i] = employees[i].getSearchKey();
-                    }
+                    
                     String ID = Validation.generateID("E", IDs);
                     acc.addEmployee(ID, name, email, address, phone_num);
                     break;
