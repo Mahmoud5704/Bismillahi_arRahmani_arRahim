@@ -72,17 +72,9 @@ public class EmployeeAcc {
                         System.out.println("Quantity must be a positive number!");
                         break;
                     }
-                    products = acc.getListOfProducts();
-                    String[] IDs = new String[products.length];
-                    for(int i = 0; i < IDs.length; i++){
-                        IDs[i] = products[i].getSearchKey();
-                    }
-                   //  String ID = Validation.generateID(productID);
-                    System.out.print("Enter product ID: ");
-                    productID = escanner.nextLine();
-                    if(!verifyProductID(productID)){
-                        break;
-                    }
+                    
+                   String productID = Validation.generateID(productID);
+                    
                    
                     acc.addProduct(productID, productName, manufacturerName, supplierName, quant);
                     acc.logout();
