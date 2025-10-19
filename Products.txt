@@ -1,0 +1,2 @@
+P2394,Laptop,Apple,TechSupplier,12,1500.0
+P1234,bdfbdfb,bdfbd,bdfbdfb,2,5005.0
