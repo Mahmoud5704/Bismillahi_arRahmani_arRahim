@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package full_project;
+
 
 import java.util.Scanner;
 
-/**
- *
- * @author zeyad
- */
 public class AdminAcc {
     public static void pannel(){
         AdminRole acc = new AdminRole();
@@ -39,17 +32,13 @@ public class AdminAcc {
                     String address = ascanner.nextLine();
                     System.out.print("employee phone number: ");
                     String phone_num = ascanner.nextLine();
-                    if(!Validation.verifyNum(phone_num, 11)){
+                    if(!Validation.verifyPhoneNum(phone_num)){
                         System.out.println("phone number must contain 11 digits");
                         break;
                     }
                     //generate ID for employee
-                    employees = acc.getListOfEmployees();
-                    String[] IDs = new String[employees.length];
-                    for(int i = 0; i < IDs.length; i++){
-                        IDs[i] = employees[i].getSearchKey();
-                    }
-                    String ID = Validation.generateID("E", IDs);
+                    
+                    String ID = Validation.generateID("E");
                     acc.addEmployee(ID, name, email, address, phone_num);
                     break;
                 case 'b':
@@ -59,24 +48,18 @@ public class AdminAcc {
                         System.out.println(employees[i].lineRepresentation());
                     }
                     break;
-                case 'c':
-                    employees = acc.getListOfEmployees(); //list of employees before modification
+               
+
+               case 'c':
                     System.out.print("Enter ID of the employee to be removed: ");
                     String target_ID = ascanner.nextLine();
-                    boolean does_employee_exist = false;
-                    for(int i = 0; i < employees.length; i++){
-                        if (employees[i].getSearchKey().equals(target_ID)){
-                            does_employee_exist = true;
-                            break;
-                        }
-                    }
-                    if(does_employee_exist){
-                        acc.removeEmployee(target_ID);
-                    }
-                    else{
-                        System.out.println("no employee has the given ID... Please try again");
-                    }
-                    break;
+                    EmployeeUserDatabase db = new EmployeeUserDatabase(main.Employeefile);
+                    if (db.contains(target_ID)) {
+                             acc.removeEmployee(target_ID);
+                    } else {
+                             System.out.println("no employee has the given ID... Please try again");
+                               }
+                     break;
                 case 'q':
                     acc.logout();
                     logged_in = false;

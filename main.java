@@ -1,26 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package full_project;
 
 import java.util.Scanner;
 
-/**
- *
- * @author zeyad
- */
 public class main {
-//    public static final String Employeefile = "/home/zeyad/full_project/src/full_project/Employees.txt"; //COMMENT THESE AND UNCOMMENT THE FOLLOWING 3 LINES IF FOUND
-//    public static final String Productsfile = "/home/zeyad/full_project/src/full_project/Products.txt";
-//    public static final String CustomersProductsfile = "/home/zeyad/full_project/src/full_project/CustomersProducts.txt";
-    public static final String Employeefile = "src/full_project/Employees.txt";
-    public static final String Productsfile = "src/full_project/Products.txt";
-    public static final String CustomersProductsfile = "src/full_project/CustomersProducts.txt";
-    
-    /**
-     * @param args the command line arguments
-     */
+    public static final String Employeefile = "/home/zeyad/full_project/src/full_project/Employees.txt";
+    public static final String Productsfile = "/home/zeyad/full_project/src/full_project/Products.txt";
+    public static final String CustomersProductsfile = "/home/zeyad/full_project/src/full_project/CustomersProducts.txt";
+//    public static final String Employeefile = "src/full_project/Employees.txt";
+//    public static final String Productsfile = "src/full_project/Products.txt";
+//    public static final String CustomersProductsfile = "src/full_project/CustomersProducts.txt";
+ 
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner scanner = new Scanner(System.in);

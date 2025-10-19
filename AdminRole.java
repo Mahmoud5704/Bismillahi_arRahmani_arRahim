@@ -1,7 +1,6 @@
 package full_project;
 import java.util.ArrayList;
 
-
 public class AdminRole implements interface_UserRole{
     // variable:
     private EmployeeUserDatabase database;
