@@ -3,12 +3,9 @@ package full_project;
 import java.util.Scanner;
 
 public class main {
-    public static final String Employeefile = "/home/zeyad/full_project/src/full_project/Employees.txt";
-    public static final String Productsfile = "/home/zeyad/full_project/src/full_project/Products.txt";
-    public static final String CustomersProductsfile = "/home/zeyad/full_project/src/full_project/CustomersProducts.txt";
-//    public static final String Employeefile = "src/full_project/Employees.txt";
-//    public static final String Productsfile = "src/full_project/Products.txt";
-//    public static final String CustomersProductsfile = "src/full_project/CustomersProducts.txt";
+    public static final String Employeefile = "src/full_project/Employees.txt";
+    public static final String Productsfile = "src/full_project/Products.txt";
+    public static final String CustomersProductsfile = "src/full_project/CustomersProducts.txt";
  
     public static void main(String[] args) {
         // TODO code application logic here
