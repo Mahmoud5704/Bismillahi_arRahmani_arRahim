@@ -59,7 +59,8 @@ public class Validation {
         return false;
     if (num.length() != length) 
         return false;
-    return num.matches("^01[2501]\\d{8}$");
+    return num.matches("^01[2501][0-9]{8}$");
+    
 }
 
 }
