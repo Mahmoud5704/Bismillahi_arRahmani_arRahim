@@ -89,6 +89,7 @@ public abstract class Abstrat_FileDatabase<T extends interface_Record> {
                 for (T cc : records) {
                     wr.write(cc.lineRepresentation() + "\n");
                 }
+                records.clear();
             } catch (FileNotFoundException e) {
                 System.out.println("ERROR : FILE NOT FOUND");
             } catch (IOException e) {
