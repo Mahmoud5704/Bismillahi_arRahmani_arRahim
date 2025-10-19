@@ -1,10 +1,11 @@
 package full_project;
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.ArrayList;
 public class EmployeeAcc {
 
     public static boolean verifySSN(String SSN) {
-        if(!Validation.verifyNum(SSN, 14)) {
+        if(!Validation.verifySSSN(SSN, SSN.length())) {
             System.out.println("invalid SSN, SSN must consist of 14 digits");
             return false;
         }
