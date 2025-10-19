@@ -71,16 +71,36 @@ public class EmployeeRole implements interface_UserRole{
     }
 
     // 5-**
-    public double returnProduct(String customerSSN, String productID, LocalDate purchaseDate, LocalDate returnDate) {
+       public double returnProduct(String customerSSN, String productID, LocalDate purchaseDate, LocalDate returnDate) {
+       //  productsDatabase.readFromFile();
+         customerproductDatabase.readFromFile();
         if (returnDate.isBefore(purchaseDate) || !productsDatabase.contains(productID)
-                || !customerproductDatabase.contains(customerSSN + "," + productID + "," + purchaseDate)
+                ||customerproductDatabase.contains(customerSSN)
                 || ChronoUnit.DAYS.between(purchaseDate, returnDate) > 14)
             return -1;
+        
 
         Product product = productsDatabase.getRecord(productID);
+          if (product == null) {
+        System.out.println(" not found in database!");
+        return -1;
+    }
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+         String key = customerSSN + "," + productID + "," + purchaseDate.format(formatter);
+         CustomerProduct pp = customerproductDatabase.getRecord(key);
+
+         if (pp == null) {
+        System.out.println(" -not found in database!");
+        return -1;
+         }
+        if(!pp.isPaid())
+            return -1;
+       
+        
         updateProductQuantity(product, 1);
-        customerproductDatabase.deleteRecord(customerSSN + "," + productID + "," + purchaseDate);
-        customerproductDatabase.saveToFile();
+       // customerproductDatabase.readFromFile();
+        customerproductDatabase.deleteRecord(key);
+       // customerproductDatabase.saveToFile();
 
         String dataOfProduct = product.lineRepresentation();
         String[] datas = dataOfProduct.split("[,]+");
