@@ -26,8 +26,23 @@ public class EmployeeRole implements interface_UserRole{
     // class contains six methods:
     // 1
     public void addProduct(String productID, String productName, String manufacturerName, String supplierName,
-            int quantity, float price) {
+            int quantity) {
+        System.out.print("Enter product price: ");
+                    String price_str = escanner.nextLine();
+                    float price;
+                    try{
+                        price = Float.parseFloat(price_str);
+                        if(price <= 0){
+                            System.out.println("Price must be a positive number!");
+                            break;
+                        }
+                    }
+                    catch(Exception e){
+                        System.out.println("Price must be a positive number!");
+                        break;
+                    }
         Product product = new Product(productID, productName, manufacturerName, supplierName, quantity, price); //missing price argument
+       
         productsDatabase.insertRecord(product);
         productsDatabase.saveToFile();
     }
