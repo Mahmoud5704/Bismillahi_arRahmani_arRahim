@@ -14,10 +14,8 @@ public class EmployeeRole implements interface_UserRole{
     public EmployeeRole() {
 
         productsDatabase = new ProductDatabase(main.Productsfile);
-        productsDatabase.readFromFile();
         customerproductDatabase = new CustomerProductDatabase(main.CustomersProductsfile);
-        customerproductDatabase.readFromFile();
-       
+        
     }
 
     // helper private class
@@ -35,7 +33,7 @@ public class EmployeeRole implements interface_UserRole{
         Product product = new Product(productID, productName, manufacturerName, supplierName, quantity, price); //missing price argument
        
         productsDatabase.insertRecord(product);
-       // productsDatabase.saveToFile();
+        productsDatabase.saveToFile();
     }
 
     // 2
@@ -77,7 +75,7 @@ public class EmployeeRole implements interface_UserRole{
 
             CustomerProduct customerProduct = new CustomerProduct(customerSSN, productID, purchaseDate);
             customerproductDatabase.insertRecord(customerProduct);
-          //  customerproductDatabase.saveToFile();
+            customerproductDatabase.saveToFile();
             return true;
         }
 
@@ -85,7 +83,7 @@ public class EmployeeRole implements interface_UserRole{
 
     // 5-**
     public double returnProduct(String customerSSN, String productID, LocalDate purchaseDate, LocalDate returnDate) {
-       //  productsDatabase.readFromFile();
+    
          customerproductDatabase.readFromFile();
         if (returnDate.isBefore(purchaseDate) || !productsDatabase.contains(productID)
                 ||customerproductDatabase.contains(customerSSN)
@@ -111,9 +109,9 @@ public class EmployeeRole implements interface_UserRole{
        
         
         updateProductQuantity(product, 1);
-       // customerproductDatabase.readFromFile();
+       
         customerproductDatabase.deleteRecord(customerSSN);
-       // customerproductDatabase.saveToFile();
+        customerproductDatabase.saveToFile();
 
         String dataOfProduct = product.lineRepresentation();
         String[] datas = dataOfProduct.split("[,]+");
