@@ -1,6 +1,8 @@
 P2394,Laptop,Apple,TechSupplier,11,1500.0
 P2395,bdfbdfb,bdfbd,bdfbdfb,4,5005.0
-p7786,vdvfdb,dfvbdfbcx,xcvzxv,5,200.25
-p7777,vdvfbdbb,dfvbdfbcx,xcvzxv,4,200.25
-p7896,bfdbdbdf,bdvcvzcx,cxxzvzcx,7,809.0
+P7786,vdvfdb,dfvbdfbcx,xcvzxv,5,200.25
+P7777,vdvfbdbb,dfvbdfbcx,xcvzxv,4,200.25
+P7896,bfdbdbdf,bdvcvzcx,cxxzvzcx,7,809.0
 E5858,Shampoo,shampobidi,yahyaforshampoo,103,20.99
+C6767,frakh,yahhya,yahyapollo,90,250.0
+Q1234,yayaya,eueueu,qoqoqo,11,250.0

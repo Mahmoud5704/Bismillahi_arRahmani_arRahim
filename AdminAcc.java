@@ -54,7 +54,7 @@ public class AdminAcc {
                     System.out.print("Enter ID of the employee to be removed: ");
                     String target_ID = ascanner.nextLine();
                     EmployeeUserDatabase db = new EmployeeUserDatabase(main.Employeefile);
-                    db.readFromFile();
+            
                     if (db.contains(target_ID)) {
                              acc.removeEmployee(target_ID);
                     } else {

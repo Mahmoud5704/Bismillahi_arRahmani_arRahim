@@ -82,20 +82,6 @@ public abstract class Abstrat_FileDatabase<T extends interface_Record> {
         }
     }// bezn allah done
     
- /*  public void saveToFile() 
-    {
-       // records.clear();
-    try (FileWriter wr = new FileWriter(filename)) {
-        
-        for (T cc : records) {
-            wr.write(cc.lineRepresentation() + "\n");
-        }
-    } catch (IOException e) {
-        System.out.println("ERROR : IOException");
-    }
-     }
-*/
-
    public void saveToFile() {
         if (!records.isEmpty()) {
             try (FileWriter wr = new FileWriter(filename)) {
@@ -103,6 +89,7 @@ public abstract class Abstrat_FileDatabase<T extends interface_Record> {
                 for (T cc : records) {
                     wr.write(cc.lineRepresentation() + "\n");
                 }
+                records.clear();
             } catch (FileNotFoundException e) {
                 System.out.println("ERROR : FILE NOT FOUND");
             } catch (IOException e) {
