@@ -28,7 +28,37 @@ public class EmployeeAcc {
             return null;
         }
     }
-
+    public static String [] input_SSN_ID_purchaseDate(Scanner escanner){
+        int counter = 1;
+        String SSN = "";
+        String productID = "";
+        String purchaseDate_str = "";
+        while(true){
+            switch(counter){
+                case 1:
+                    System.out.print("Enter customerSSN: ");
+                    SSN = escanner.nextLine();
+                    if(!verifySSN(SSN))
+                        continue;
+                    counter++;
+                case 2:
+                    System.out.print("Enter product id: ");
+                    productID = escanner.nextLine();
+                    if(!verifyProductID(productID))
+                        continue;
+                    counter++;
+                case 3:
+                    System.out.print("Enter purchase date: ");
+                    purchaseDate_str = escanner.nextLine();
+                    LocalDate purchaseDate = parseDate(purchaseDate_str);
+                    if(purchaseDate == null)
+                        continue;
+                default:
+                  String[] result = {SSN, productID, purchaseDate_str};
+                  return result;
+            }
+        }
+    }
     
     public static void pannel(){
         EmployeeRole acc = new EmployeeRole();
@@ -40,52 +70,75 @@ public class EmployeeAcc {
             System.out.println("E) return product\nF) apply payment\nQ) logout");
             String command_str = escanner.nextLine();
             char choice = Validation.parseChoice(command_str);
-            String SSN;
-            String purchaseDate_str;
-            LocalDate purchaseDate;
-            String productID;
-            boolean success;
+            String SSN = "";
+            String purchaseDate_str = "";
+            LocalDate purchaseDate = LocalDate.now();
+            String returnDate_str = "";
+            LocalDate returnDate = LocalDate.now();
+            String productID = "";
+            boolean success = false;
             Product products[];
+            int quant = 0;
+            String productName = "";
+            String manufacturerName = "";
+            String supplierName = "";
+            String quant_str = "";
+            
+            boolean taking_input = false;
+            int counter = 1;
             switch(choice){
                 case 'a':
-                    System.out.print("Enter product name: ");
-                    String productName = escanner.nextLine();
-                    if(!Validation.verifyName(productName)){ //modify the function to allow digits for product names?
-                        System.out.println("Names must only contain letters!");
-                        break;
-                    }
-                    System.out.print("Enter manufacturer name: ");
-                    String manufacturerName = escanner.nextLine();
-                    System.out.print("Enter supplier name: ");
-                    String supplierName = escanner.nextLine();
-                    System.out.print("Enter quantity: ");
-                    String quant_str = escanner.nextLine();
-                    int quant;
-                    try{
-                        quant = Integer.parseInt(quant_str);
-                        if (quant <= 0){
-                            System.out.println("Quantity must be a positive number!");
-                            break;
+                    taking_input = true;
+                    while(taking_input){
+                        switch(counter){
+                            case 1:
+                                System.out.print("Enter product name: ");
+                                productName = escanner.nextLine();
+                                if(!Validation.verifyName(productName)){ //modify the function to allow digits for product names?
+                                    System.out.println("Names must only contain letters!");
+                                    continue;
+                                }
+                                counter++;
+                            case 2:
+                                System.out.print("Enter manufacturer name: ");
+                                manufacturerName = escanner.nextLine();
+                                System.out.print("Enter supplier name: ");
+                                supplierName = escanner.nextLine();
+                                counter++;
+                            case 3:
+                                System.out.print("Enter quantity: ");
+                                quant_str = escanner.nextLine();
+                                try{
+                                    quant = Integer.parseInt(quant_str);
+                                    if (quant <= 0){
+                                        System.out.println("Quantity must be a positive number!");
+                                        continue;
+                                    }
+                                }
+                                catch(Exception e){
+                                    System.out.println("Quantity must be a positive number!");
+                                    continue;
+                                }
+                                counter++;
+                            default:
+                                taking_input = false;
+                                counter = 1;
+                                products = acc.getListOfProducts();
+                                String[] IDs = new String[products.length];
+                                for(int i = 0; i < IDs.length; i++){
+                                    IDs[i] = products[i].getSearchKey();
+                                }
+                                //  String ID = Validation.generateID(productID);
+                                System.out.print("Enter product ID: ");
+                                productID = escanner.nextLine();
+                                if(!verifyProductID(productID)){
+                                    continue;
+                                }
+                        
+                                acc.addProduct(productID, productName, manufacturerName, supplierName, quant);
+                                acc.logout();
                         }
                     }
-                    catch(Exception e){
-                        System.out.println("Quantity must be a positive number!");
-                        break;
-                    }
-                    products = acc.getListOfProducts();
-                    String[] IDs = new String[products.length];
-                    for(int i = 0; i < IDs.length; i++){
-                        IDs[i] = products[i].getSearchKey();
-                    }
-                   //  String ID = Validation.generateID(productID);
-                    System.out.print("Enter product ID: ");
-                    productID = escanner.nextLine();
-                    if(!verifyProductID(productID)){
-                        break;
-                    }
-                   
-                    acc.addProduct(productID, productName, manufacturerName, supplierName, quant);
-                    acc.logout();
                     break;
                 case 'b':
                     products = acc.getListOfProducts();
@@ -102,57 +155,29 @@ public class EmployeeAcc {
                     }
                     break;
                 case 'd':
-                    System.out.print("Enter customerSSN: ");
-                    SSN = escanner.nextLine();
-                    if(!verifySSN(SSN)){
-                        break;
-                    }
-                    System.out.print("Enter product id: ");
-                    productID = escanner.nextLine();
-                    if(!verifyProductID(productID)){
-                        break;
-                    }
-                    System.out.print("Enter purchase date: ");
-                    purchaseDate_str = escanner.nextLine();
-                    purchaseDate = parseDate(purchaseDate_str);
-                    if(purchaseDate == null){
-                        break;
-                    }
-                    success = acc.purchaseProduct(SSN, productID, purchaseDate);
-                    if(success)
-                    {
+                    String[] inputs = input_SSN_ID_purchaseDate(escanner);
+                    success = acc.purchaseProduct(inputs[0], inputs[1], LocalDate.parse(inputs[2]));
+                    if(success){
                         System.out.println("product purchased successfully");
                         acc.logout();
                     }
                     else
                         System.out.println("this product is not in stock!");
                     break;
+                    
                 case 'e':
-                    System.out.print("Enter customer SSN: ");
-                    SSN = escanner.nextLine();
-                    if(!verifySSN(SSN)){
-                        break;
+                    String[] Inputs = input_SSN_ID_purchaseDate(escanner);
+                    while(true){
+                        System.out.print("Enter return date: ");
+                        returnDate_str = escanner.nextLine();
+                        returnDate = parseDate(returnDate_str);
+                        if(returnDate != null){
+                            break; 
+                        }
                     }
-                    System.out.print("Enter product ID: ");
-                    productID = escanner.nextLine();
-                    if(!verifyProductID(productID)){
-                        break;
-                    }
-                    System.out.print("Enter purchase date: ");
-                    purchaseDate_str = escanner.nextLine();
-                    purchaseDate = parseDate(purchaseDate_str);
-                    if(purchaseDate == null){
-                        break;
-                    }
-                    System.out.print("Enter return date: ");
-                    String returnDate_str = escanner.nextLine();
-                    LocalDate returnDate = parseDate(returnDate_str);
-                    if(returnDate == null){
-                        break; 
-                    }
-                    double result = acc.returnProduct(SSN, productID, purchaseDate, returnDate);
+                    double result = acc.returnProduct(Inputs[0], Inputs[1], LocalDate.parse(Inputs[2]), returnDate);
                     if(result == -1){
-                        System.out.println("unable to return product, verify your input!");
+                        System.out.println("unable to return product...");
                     }
                     else{
                         acc.logout();
@@ -160,20 +185,30 @@ public class EmployeeAcc {
                     }
                     break;
                 case 'f':
-                    System.out.print("Enter customer SSN: ");
-                    SSN = escanner.nextLine();
-                    if(!verifySSN(SSN)){
-                        break;
-                    }
-                    System.out.print("Enter purchase date: ");
-                    purchaseDate_str = escanner.nextLine();
-                    purchaseDate = parseDate(purchaseDate_str);
-                    if(purchaseDate == null){
-                        break;
+                    taking_input = true;
+                    while(taking_input){
+                        switch(counter){
+                            case 1:
+                                System.out.print("Enter customer SSN: ");
+                                SSN = escanner.nextLine();
+                                if(!verifySSN(SSN)){
+                                    continue;
+                                }
+                                counter++;
+                            case 2:
+                                System.out.print("Enter purchase date: ");
+                                purchaseDate_str = escanner.nextLine();
+                                purchaseDate = parseDate(purchaseDate_str);
+                                if(purchaseDate == null){
+                                    continue;
+                                }
+                            default:
+                                counter = 1;
+                                taking_input = false;
+                        }
                     }
                     success = acc.applyPayment(SSN, purchaseDate);
                     if(success){
-                        acc.logout();
                         System.out.println("payment applied successfully!");
                     }
                     else{
@@ -181,7 +216,7 @@ public class EmployeeAcc {
                     }
                     break;
                 case 'q':
-                 //   acc.logout();
+                    acc.logout();
                     logged_in = false;
                     break;
                 default:
