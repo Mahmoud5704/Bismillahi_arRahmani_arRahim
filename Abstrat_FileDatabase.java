@@ -19,15 +19,16 @@ public abstract class Abstrat_FileDatabase<T extends interface_Record> {
     public abstract T createRecordFrom(String line);// bezn allah done
 
     public void readFromFile() {
-         records.clear();
+       try { records.clear();
         File path_file = new File(filename);
-        try (Scanner read_path = new Scanner(path_file)) {
+        Scanner read_path = new Scanner(path_file)
             if (!read_path.hasNextLine()) {
                 System.out.println("FILE IS EMPTY");
                 return;
             }
-            while (read_path.hasNextLine()) {
-                String line = read_path.nextLine();
+           while (read_path.hasNextLine()) {
+                String line = read_path.nextLine().trim();
+                if(!line.isEmpty())
                 records.add(createRecordFrom(line));
             }
         } catch (FileNotFoundException e) {
