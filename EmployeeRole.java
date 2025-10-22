@@ -58,7 +58,7 @@ public class EmployeeRole implements interface_UserRole{
 
     // 4
     public boolean purchaseProduct(String customerSSN, String productID, LocalDate purchaseDate) {
-        productsDatabase.readFromFile();
+       // productsDatabase.readFromFile();
         Product product = productsDatabase.getRecord(productID);
           if (product == null) {
         System.out.println(" ERROR: Product with ID " + productID + " not found in database!");
