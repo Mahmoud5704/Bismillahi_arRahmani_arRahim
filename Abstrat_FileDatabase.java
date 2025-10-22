@@ -83,8 +83,8 @@ public abstract class Abstrat_FileDatabase<T extends interface_Record> {
         }
     }// bezn allah done
     
-   public void saveToFile() {
-        if (!records.isEmpty()) {
+   public void saveToFile(){
+        
             try (FileWriter wr = new FileWriter(filename)) {
                 
                 for (T cc : records) {
@@ -96,6 +96,6 @@ public abstract class Abstrat_FileDatabase<T extends interface_Record> {
             } catch (IOException e) {
                 System.out.println("ERROR : IOException");
             }
-        }
+        
     }// bezn allah done
 }
