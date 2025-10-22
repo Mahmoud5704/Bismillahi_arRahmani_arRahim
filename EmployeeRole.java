@@ -13,8 +13,8 @@ public class EmployeeRole implements interface_UserRole{
     // constructor:
     public EmployeeRole() {
 
-        productsDatabase = new ProductDatabase(main.Productsfile);
-        customerproductDatabase = new CustomerProductDatabase(main.CustomersProductsfile);
+      productsDatabase = new ProductDatabase("Product.txt");
+        customerproductDatabase = new CustomerProductDatabase("CustomerProducts.txt");
         
     }
 
