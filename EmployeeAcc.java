@@ -156,7 +156,7 @@ public class EmployeeAcc {
                     }
                     else{
                         acc.logout();
-                        System.out.println("product sold for " + result + " EGP returned successfully!");
+                        System.out.println("product  returned successfully!");
                     }
                     break;
                 case 'f':
