@@ -13,16 +13,9 @@ public class EmployeeRole implements interface_UserRole{
     // constructor:
     public EmployeeRole() {
 
-        productsDatabase = new ProductDatabase(main.Productsfile);
-        customerproductDatabase = new CustomerProductDatabase(main.CustomersProductsfile);
+      productsDatabase = new ProductDatabase("Product.txt");
+        customerproductDatabase = new CustomerProductDatabase("CustomerProducts.txt");
         
-    }
-
-    // helper private class
-    private void updateProductQuantity(Product product, int delta) {
-        
-        product.setQuantity(product.getQuantity() + delta);
-        productsDatabase.saveToFile();
     }
 
     // class contains six methods:
@@ -70,53 +63,37 @@ public class EmployeeRole implements interface_UserRole{
             return false;
 
         else {
-
-            updateProductQuantity(product, -1);
-
+            Product product = productsDatabase.getRecord(productID);
+            product.setQuantity(product.getQuantity() - 1);
+            productsDatabase.saveToFile();
             CustomerProduct customerProduct = new CustomerProduct(customerSSN, productID, purchaseDate);
             customerproductDatabase.insertRecord(customerProduct);
             customerproductDatabase.saveToFile();
             return true;
         }
-
     }
 
-    // 5-**
+    // 5-
     public double returnProduct(String customerSSN, String productID, LocalDate purchaseDate, LocalDate returnDate) {
     
        //  customerproductDatabase.readFromFile();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String key = customerSSN + "," + productID + "," + purchaseDate.format(formatter);
         if (returnDate.isBefore(purchaseDate) || !productsDatabase.contains(productID)
-                ||customerproductDatabase.contains(customerSSN)
-                || ChronoUnit.DAYS.between(purchaseDate, returnDate) > 14)
+                || !customerproductDatabase.contains(key)
+                || ChronoUnit.DAYS.between(purchaseDate, returnDate) > 14) {
             return -1;
-        
-
+        }
         Product product = productsDatabase.getRecord(productID);
-          if (product == null) {
-        System.out.println(" not found in database!");
-        return -1;
-    }
-         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-         String key = customerSSN + "," + productID + "," + purchaseDate.format(formatter);
-         CustomerProduct pp = customerproductDatabase.getRecord(key);
-
-         if (pp == null) {
-        System.out.println(" -not found in database!");
-        return -1;
-         }
-        if(!pp.isPaid())
-            return -1;
-       
+        product.setQuantity(product.getQuantity() + 1);
+        productsDatabase.saveToFile();
         
-        updateProductQuantity(product, 1);
-       
         customerproductDatabase.deleteRecord(key);
         customerproductDatabase.saveToFile();
 
         String dataOfProduct = product.lineRepresentation();
         String[] datas = dataOfProduct.split("[,]+");
         return Double.parseDouble(datas[5]);
-
     }
 
     // 6-
@@ -133,7 +110,7 @@ public class EmployeeRole implements interface_UserRole{
         return false;
 
     }
-
+    //7-
     @Override
     public void logout() {
         productsDatabase.saveToFile();

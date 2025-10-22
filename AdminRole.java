@@ -7,8 +7,7 @@ public class AdminRole implements interface_UserRole{
 
     // constructor:
     public AdminRole() {
-        database = new EmployeeUserDatabase(main.Employeefile);
-        
+         database = new EmployeeUserDatabase("Employees.txt");
     }
 
     // class contains four methods:
