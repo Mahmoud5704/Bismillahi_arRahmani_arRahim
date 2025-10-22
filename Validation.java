@@ -11,7 +11,6 @@ public class Validation {
     }
     public static String generateID(String prefix) {
     EmployeeUserDatabase db = new EmployeeUserDatabase(main.Employeefile);  
-    db.readFromFile();  
     while (true) {
         int num_part = (int) ((Math.random() * 9000) + 1000);
         String id = prefix + num_part;
