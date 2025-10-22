@@ -84,7 +84,7 @@ public class EmployeeRole implements interface_UserRole{
     // 5-**
     public double returnProduct(String customerSSN, String productID, LocalDate purchaseDate, LocalDate returnDate) {
     
-         customerproductDatabase.readFromFile();
+       //  customerproductDatabase.readFromFile();
         if (returnDate.isBefore(purchaseDate) || !productsDatabase.contains(productID)
                 ||customerproductDatabase.contains(customerSSN)
                 || ChronoUnit.DAYS.between(purchaseDate, returnDate) > 14)
