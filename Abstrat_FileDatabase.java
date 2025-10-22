@@ -21,7 +21,7 @@ public abstract class Abstrat_FileDatabase<T extends interface_Record> {
     public void readFromFile() {
        try { records.clear();
         File path_file = new File(filename);
-        Scanner read_path = new Scanner(path_file)
+        Scanner read_path = new Scanner(path_file);
             if (!read_path.hasNextLine()) {
                 System.out.println("FILE IS EMPTY");
                 return;
